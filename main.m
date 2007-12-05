@@ -34,6 +34,7 @@ int main (int argc, const char * argv[])
     char                *remove     = NULL;
     char                *add        = NULL;
     BOOL                hide        = NO;
+    int                 status      = EXIT_SUCCESS;
     int                 ret         = getopt(argc, (char * const *)argv, "hr:a:H");
     while (ret != -1)
     {        
@@ -59,6 +60,7 @@ int main (int argc, const char * argv[])
                 
             case '?':       // unrecognized option or missing argument
             default:
+                status = EXIT_FAILURE;
                 usage();
                 goto cleanup;
         }
@@ -68,6 +70,7 @@ int main (int argc, const char * argv[])
     
     if ((add == NULL) && hide)  // can't specify -H without -a
     {
+        status = EXIT_FAILURE;
         usage();
         goto cleanup;
     }
@@ -93,7 +96,7 @@ cleanup:
     if (add != NULL)    free(add);
     
     [pool drain];
-    return EXIT_SUCCESS;
+    return status;
 }
 
 // show usage instructions
