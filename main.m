@@ -117,9 +117,17 @@ void usage(void)
            " -l         : list items\n");
 }
 
+SystemEventsApplication *system_events(void)
+{
+    static SystemEventsApplication *systemEvents = nil;
+    if (!systemEvents)
+        systemEvents = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
+    return systemEvents;
+}
+
 void list(void)
 {
-    SystemEventsApplication *sys = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
+    SystemEventsApplication *sys = system_events();
     NSArray *items = [[sys loginItems] arrayByApplyingSelector:@selector(properties)];
     for (NSDictionary *properties in items)
     {
