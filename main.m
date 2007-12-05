@@ -120,14 +120,18 @@ void usage(void)
 void list(void)
 {
     SystemEventsApplication *sys = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
-    SBElementArray *items = [sys loginItems];
-    for (SystemEventsLoginItem *item in items)
+    NSArray *items = [[sys loginItems] arrayByApplyingSelector:@selector(properties)];
+    for (NSDictionary *properties in items)
     {
         NSString *info = [NSString stringWithFormat:
                           @"Name     : %@\n"
                           @"  Kind   : %@\n"
                           @"  Path   : %@\n"
-                          @"  Hidden?: %s\n", [item name], [item kind], [item path], [item hidden] ? "YES" : "NO"];
+                          @"  Hidden?: %s\n",
+                          [properties objectForKey:@"name"],
+                          [properties objectForKey:@"kind"],
+                          [properties objectForKey:@"path"],
+                          [[properties objectForKey:@"hidden"] boolValue] ? "YES" : "NO"];
         printf([info UTF8String]);
     }
 }
