@@ -147,39 +147,17 @@ void list(void)
 // helper method: add item to login items
 void addLoginItem(NSString *path, BOOL hideOnLaunch)
 {
-    // if configuration file is malformed, could get here without a path
-    if (!path) return;
-    
     // remove item if it already exists
     removeLoginItemWithPath(path);
-    
-    // prepare dictionary for adding
-    NSDictionary *loginItem = [NSDictionary dictionaryWithObjectsAndKeys:
+
+    // prepare login item and add it
+    NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys:
             path,                                   @"Path",
             [NSNumber numberWithBool:hideOnLaunch], @"Hide", nil];
-    
-    // now try to add it
-    NSUserDefaults      *defs       = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *loginDict  = [[defs persistentDomainForName:@"loginwindow"] mutableCopy];
-    
-    if (!loginDict) // no loginwindow.plist: create one from scratch
-        loginDict = [NSMutableDictionary dictionaryWithCapacity:1];
-    
-    NSMutableArray *items = [[loginDict objectForKey:@"AutoLaunchedApplicationDictionary"] mutableCopy];
-    
-    if (!items)     // no items array: create one from scratch
-        items = [NSMutableArray arrayWithCapacity:1];
-    
-    // put object at end of list
-    [items insertObject:loginItem atIndex:[items count]];
-
-    // plug list back into loginwindow dictionary
-    [loginDict setObject:items forKey:@"AutoLaunchedApplicationDictionary"];
-
-    // flush to disk
-    [defs removePersistentDomainForName:@"loginwindow"];
-    [defs setPersistentDomain:loginDict forName:@"loginwindow"];
-    [defs synchronize];
+    SystemEventsApplication *sys = system_events();
+    Class loginItemClass = [sys classForScriptingClass:@"login item"];
+    SystemEventsLoginItem *item = [[loginItemClass alloc] initWithProperties:properties];
+    [[sys loginItems] addObject:item];
 }
 
 // helper method: remove item from login items: always operates on full path
