@@ -23,6 +23,7 @@
 /* Begin PBXBuildFile section */
 		8DD76F9A0486AA7600D96B5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
+		BC5FA4EB0D06BD9900A5957F /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5FA4EA0D06BD9900A5957F /* ScriptingBridge.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		BC5FA4BC0D06B68200A5957F /* foundation-tool-target.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "foundation-tool-target.xcconfig"; path = "../../buildtools/foundation-tool-target.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BC5FA4BD0D06B68200A5957F /* release-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "release-style.xcconfig"; path = "../../buildtools/release-style.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BC5FA4DC0D06BB8E00A5957F /* SystemEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemEvents.h; sourceTree = "<group>"; };
+		BC5FA4EA0D06BD9900A5957F /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
 		C6859EA3029092ED04C91782 /* login-tool.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = "login-tool.1"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -43,6 +45,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */,
+				BC5FA4EB0D06BD9900A5957F /* ScriptingBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,6 +76,7 @@
 		08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				BC5FA4EA0D06BD9900A5957F /* ScriptingBridge.framework */,
 				08FB779EFE84155DC02AAC07 /* Foundation.framework */,
 			);
 			name = "External Frameworks and Libraries";

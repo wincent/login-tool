@@ -9,9 +9,8 @@
 // - ignores arguments specified after options have been parsed with getopt
 
 #import <Foundation/Foundation.h>
-
-// for getopt
-#include <unistd.h>
+#import <unistd.h>                  /* for getopt() */
+#import "SystemEvents.h"
 
 // helper method: add item to login items
 void addLoginItem(NSString *path, BOOL hideOnLaunch);
@@ -28,6 +27,9 @@ void removeLoginItemWithNameOrPath(NSString *name, NSString *path);
 // show usage instructions
 void usage(void);
 
+// list currently defined login items
+void list(void);
+
 int main (int argc, const char * argv[])
 {
     NSAutoreleasePool   *pool       = [[NSAutoreleasePool alloc] init];
@@ -35,7 +37,7 @@ int main (int argc, const char * argv[])
     char                *add        = NULL;
     BOOL                hide        = NO;
     int                 status      = EXIT_SUCCESS;
-    int                 ret         = getopt(argc, (char * const *)argv, "hr:a:H");
+    int                 ret         = getopt(argc, (char * const *)argv, "hlr:a:H");
     while (ret != -1)
     {        
         switch (ret)
@@ -43,7 +45,11 @@ int main (int argc, const char * argv[])
             case 'h':       // show help
                 usage();
                 goto cleanup;
-                
+
+            case 'l':       // list items
+                list();
+                break;
+
             case 'r':       // remove item (filename only)
                 remove = strdup(optarg);
                 if (remove == NULL) return 1;
@@ -107,7 +113,23 @@ void usage(void)
            " -h         : show usage\n"
            " -r item    : remove item\n"
            " -a path    : add item (full path)\n"
-           " -H         : set Hide attribute on added item\n");
+           " -H         : set Hide attribute on added item\n"
+           " -l         : list items\n");
+}
+
+void list(void)
+{
+    SystemEventsApplication *sys = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
+    SBElementArray *items = [sys loginItems];
+    for (SystemEventsLoginItem *item in items)
+    {
+        NSString *info = [NSString stringWithFormat:
+                          @"Name     : %@\n"
+                          @"  Kind   : %@\n"
+                          @"  Path   : %@\n"
+                          @"  Hidden?: %s\n", [item name], [item kind], [item path], [item hidden] ? "YES" : "NO"];
+        printf([info UTF8String]);
+    }
 }
 
 // helper method: add item to login items
