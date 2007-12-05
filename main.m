@@ -215,6 +215,6 @@ void removeLoginItemWithNameOrPath(NSString *name, NSString *path)
     }
     for (SystemEventsLoginItem *item in deleteable)
     {
-        [items removeObject:item];
+        [item delete];
     }
 }
