@@ -199,39 +199,22 @@ void removeLoginItemWithName(NSString *name)
 // helper method: does the actual work of removing login items
 void removeLoginItemWithNameOrPath(NSString *name, NSString *path)
 {
-    NSUserDefaults  *defs       = [NSUserDefaults standardUserDefaults];
-    NSDictionary    *loginDict  = [defs persistentDomainForName:@"loginwindow"];
-    
-    if (!loginDict) return;     // not necessarily a fatal error
-    
-    // this is an array, although it's misleadingly labelled as a "Dictionary"
-    NSMutableArray *items = [[loginDict objectForKey:@"AutoLaunchedApplicationDictionary"] mutableCopy];
-        
-    if (!items) return;         // again not necessarily a fatal error
-    
-    id object = nil;
-    for (unsigned i = 0, max = [items count]; i < max; i++)   // scan the array for a matching entry
+    SystemEventsApplication *sys = system_events();
+    NSMutableArray *deleteable = [NSMutableArray array];
+    SBElementArray *items = [sys loginItems];
+    if ([items count] == 0) return;
+    for (SystemEventsLoginItem *item in items)
     {
-        // note that object, path and/or name can be nil with no ill effects
-        object = [items objectAtIndex:i];
-        if (!object) continue;
-        
-        // extract this separately for code readability
-        NSString *comparePath = [object objectForKey:@"Path"];
-        if (!comparePath) continue;
-            
-        // test against path if defined + test again name if defined    
-        if ((path && ([comparePath isEqualToString:path])) ||
-            (name && ([[comparePath lastPathComponent] isEqualToString:name])))
-        {
-            [items removeObjectAtIndex:i];  // found it: remove it
-            
-            NSMutableDictionary *updatedDict = [loginDict mutableCopy];
-            [updatedDict setObject:items forKey:@"AutoLaunchedApplicationDictionary"];
-            [defs removePersistentDomainForName:@"loginwindow"];
-            [defs setPersistentDomain:updatedDict forName:@"loginwindow"];
-            [defs synchronize];             // flush changes to disk
-            break;                          // no need to keep searching
-        }
+        NSString *comparePath = [item path];
+
+        // test against path if defined + test against name if defined
+        if ((path && ([path isEqualToString:comparePath])) ||
+            (name && ([name isEqualToString:[comparePath lastPathComponent]])))
+            // can't delete while iterating; will do in a separate pass
+            [deleteable addObject:item];
+    }
+    for (SystemEventsLoginItem *item in deleteable)
+    {
+        [items removeObject:item];
     }
 }
