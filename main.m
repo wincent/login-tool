@@ -39,7 +39,7 @@ int main (int argc, const char * argv[])
     int                 status      = EXIT_SUCCESS;
     int                 ret         = getopt(argc, (char * const *)argv, "hlr:a:H");
     while (ret != -1)
-    {        
+    {
         switch (ret)
         {
             case 'h':       // show help
@@ -54,39 +54,39 @@ int main (int argc, const char * argv[])
                 remove = strdup(optarg);
                 if (remove == NULL) return 1;
                 break;
-                
+
             case 'a':       // add item (full path)
                 add = strdup(optarg);
                 if (add == NULL) return 1;
                 break;
-                
+
             case 'H':       // set "Hide" attribute for added item
                 hide = YES;
                 break;
-                
+
             case '?':       // unrecognized option or missing argument
-            default:
+                default:
                 status = EXIT_FAILURE;
                 usage();
                 goto cleanup;
         }
-       
+
         ret = getopt(argc, (char * const *)argv, "hr:a:H"); // get next option
     }
-    
+
     if ((add == NULL) && hide)  // can't specify -H without -a
     {
         status = EXIT_FAILURE;
         usage();
         goto cleanup;
     }
-        
+
     if (remove != NULL)
     {
         printf("Removing login item with name: %s\n", remove);
-        removeLoginItemWithName([NSString stringWithCString:remove]);   
+        removeLoginItemWithName([NSString stringWithCString:remove]);
     }
-    
+
     if (add != NULL)
     {
         if (hide)
@@ -96,11 +96,11 @@ int main (int argc, const char * argv[])
 
         addLoginItem([NSString stringWithCString:add], hide);
     }
-    
+
 cleanup:
     if (remove != NULL) free(remove);
     if (add != NULL)    free(add);
-    
+
     [pool drain];
     return status;
 }
@@ -152,8 +152,8 @@ void addLoginItem(NSString *path, BOOL hideOnLaunch)
 
     // prepare login item and add it
     NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys:
-            path,                                   @"Path",
-            [NSNumber numberWithBool:hideOnLaunch], @"Hide", nil];
+        path,                                   @"Path",
+        [NSNumber numberWithBool:hideOnLaunch], @"Hide", nil];
     SystemEventsApplication *sys = system_events();
     Class loginItemClass = [sys classForScriptingClass:@"login item"];
     SystemEventsLoginItem *item = [[loginItemClass alloc] initWithProperties:properties];
