@@ -1,0 +1,4 @@
+*.mode*
+*.pbxuser*
+!default.pbxuser
+
