@@ -92,7 +92,7 @@ cleanup:
     if (remove != NULL) free(remove);
     if (add != NULL)    free(add);
     
-    [pool release];
+    [pool drain];
     return EXIT_SUCCESS;
 }
 
@@ -125,15 +125,13 @@ void addLoginItem(NSString *path, BOOL hideOnLaunch)
     NSUserDefaults      *defs       = [NSUserDefaults standardUserDefaults];
     NSMutableDictionary *loginDict  = [[defs persistentDomainForName:@"loginwindow"] mutableCopy];
     
-    if (!loginDict)
-        // no loginwindow.plist: create one from scratch
-        loginDict = [[NSMutableDictionary alloc] initWithCapacity:1];
+    if (!loginDict) // no loginwindow.plist: create one from scratch
+        loginDict = [NSMutableDictionary dictionaryWithCapacity:1];
     
     NSMutableArray *items = [[loginDict objectForKey:@"AutoLaunchedApplicationDictionary"] mutableCopy];
     
-    if (!items)
-        // no items array: create one from scratch
-        items = [[NSMutableArray alloc] initWithCapacity:1];
+    if (!items)     // no items array: create one from scratch
+        items = [NSMutableArray arrayWithCapacity:1];
     
     // put object at end of list
     [items insertObject:loginItem atIndex:[items count]];
@@ -145,9 +143,6 @@ void addLoginItem(NSString *path, BOOL hideOnLaunch)
     [defs removePersistentDomainForName:@"loginwindow"];
     [defs setPersistentDomain:loginDict forName:@"loginwindow"];
     [defs synchronize];
-    
-    [loginDict  release];
-    [items      release];
 }
 
 // helper method: remove item from login items: always operates on full path
@@ -199,10 +194,7 @@ void removeLoginItemWithNameOrPath(NSString *name, NSString *path)
             [defs removePersistentDomainForName:@"loginwindow"];
             [defs setPersistentDomain:updatedDict forName:@"loginwindow"];
             [defs synchronize];             // flush changes to disk
-            
-            [updatedDict release];  
             break;                          // no need to keep searching
         }
     }
-    [items release];
 }
