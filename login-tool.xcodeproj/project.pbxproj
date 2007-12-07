@@ -23,6 +23,7 @@
 /* Begin PBXBuildFile section */
 		8DD76F9A0486AA7600D96B5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
+		BC12F34B0D07503300C844E9 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC12F34A0D07503300C844E9 /* Carbon.framework */; };
 		BC5FA4EB0D06BD9900A5957F /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5FA4EA0D06BD9900A5957F /* ScriptingBridge.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +31,7 @@
 		08FB7796FE84155DC02AAC07 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8DD76FA10486AA7600D96B5E /* login-tool */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "login-tool"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC12F34A0D07503300C844E9 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		BC5FA4BA0D06B68200A5957F /* base-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "base-style.xcconfig"; path = "../../buildtools/base-style.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BC5FA4BB0D06B68200A5957F /* debug-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "debug-style.xcconfig"; path = "../../buildtools/debug-style.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BC5FA4BC0D06B68200A5957F /* foundation-tool-target.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "foundation-tool-target.xcconfig"; path = "../../buildtools/foundation-tool-target.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -46,6 +48,7 @@
 			files = (
 				8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */,
 				BC5FA4EB0D06BD9900A5957F /* ScriptingBridge.framework in Frameworks */,
+				BC12F34B0D07503300C844E9 /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +79,7 @@
 		08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				BC12F34A0D07503300C844E9 /* Carbon.framework */,
 				BC5FA4EA0D06BD9900A5957F /* ScriptingBridge.framework */,
 				08FB779EFE84155DC02AAC07 /* Foundation.framework */,
 			);

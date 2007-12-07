@@ -150,6 +150,7 @@ void addLoginItem(NSString *path, BOOL hideOnLaunch)
     // remove item if it already exists
     removeLoginItemWithPath(path);
 
+#if SCRIPTING_BRIDGE_WORKS
     // prepare login item and add it
     NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys:
         path,                                   @"Path",
@@ -157,7 +158,58 @@ void addLoginItem(NSString *path, BOOL hideOnLaunch)
     SystemEventsApplication *sys = system_events();
     Class loginItemClass = [sys classForScriptingClass:@"login item"];
     SystemEventsLoginItem *item = [[loginItemClass alloc] initWithProperties:properties];
+
+    // doesn't work: nothing added to loginwindow.plist, nor to [sys loginItems] proxy
     [[sys loginItems] addObject:item];
+#endif
+
+#if RAW_APPLE_EVENTS_WORK
+    // tell application "System Events" to make new login item at end with properties {path:"...", hidden:false}
+    const char *gizmo = "'kocl':type('logi'), 'insh':'insl'{'kobj':'null'(), 'kpos':enum('end ')}, 'prdt':"
+    "{'ppth':'utxt'(@), 'hidn':bool(@)}";
+
+    AppleEvent event;
+    NSData *data = [path dataUsingEncoding:NSUnicodeStringEncoding];
+    OSType target = 'sevs';
+
+    // doesn't work: returns 0 (noErr) but nothing added; running script from Script Editor also doesn't work
+    OSStatus err = AEBuildAppleEvent(kAECoreSuite, kAECreateElement, typeApplSignature, &target, sizeof(target),
+                                     kAutoGenerateReturnID, kAnyTransactionID, &event, NULL, gizmo, [data length], [data bytes],
+                                     hideOnLaunch ? true : false);
+    if (err != noErr)
+        fprintf(stderr, "Failed to add login item (AEBuildAppleEvent returned %d)\n", err);
+#endif
+
+    // last resort approach
+    NSDictionary        *loginItem  = [NSDictionary dictionaryWithObjectsAndKeys:
+                                       path,                                    @"Path",
+                                       [NSNumber numberWithBool:hideOnLaunch],  @"Hide", nil];
+    NSUserDefaults      *defs       = [NSUserDefaults standardUserDefaults];
+    NSMutableDictionary *loginDict  = [[defs persistentDomainForName:@"loginwindow"] mutableCopy];
+    if (!loginDict)
+        // no loginwindow.plist: create one from scratch
+        loginDict = [[NSMutableDictionary alloc] initWithCapacity:1];
+
+    NSMutableArray *items = [[loginDict objectForKey:@"AutoLaunchedApplicationDictionary"] mutableCopy];
+    if (!items)
+        // no items array: create one from scratch
+        items = [[NSMutableArray alloc] initWithCapacity:1];
+
+    // put object at end of list
+    [items insertObject:loginItem atIndex:[items count]];
+
+    // plug list back into loginwindow dictionary
+    [loginDict setObject:items forKey:@"AutoLaunchedApplicationDictionary"];
+
+    // flush to disk: actually works (changes written to loginwindow.plist) but System Events.app doesn't see them
+    [defs removePersistentDomainForName:@"loginwindow"];
+    [defs setPersistentDomain:loginDict forName:@"loginwindow"];
+    [defs synchronize];
+
+    // obtained using strings on /System/Library/PreferencePanes/Accounts.prefPane/Contents/MacOS/Accounts
+    NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
+    [center postNotificationName:@"com.apple.loginItemsListDidChnage" object:nil]; // note typo
+    [center postNotificationName:@"com.apple.loginItemsListDidChange" object:nil]; // just in case Apple corrects the typo
 }
 
 // helper method: remove item from login items: always operates on full path
