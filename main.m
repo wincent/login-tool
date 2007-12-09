@@ -12,6 +12,10 @@
 #import <unistd.h>                  /* for getopt() */
 #import "SystemEvents.h"
 
+// WOCommon headers
+#import "WOCommon/WOLoginItem.h"
+#import "WOCommon/WOLoginManager.h"
+
 // helper method: add item to login items
 void addLoginItem(NSString *path, BOOL hideOnLaunch);
 
@@ -28,7 +32,7 @@ void removeLoginItemWithNameOrPath(NSString *name, NSString *path);
 void usage(void);
 
 // list currently defined login items
-void list(void);
+void listLoginItems(void);
 
 int main (int argc, const char * argv[])
 {
@@ -47,7 +51,7 @@ int main (int argc, const char * argv[])
                 goto cleanup;
 
             case 'l':       // list items
-                list();
+                listLoginItems();
                 break;
 
             case 'r':       // remove item (filename only)
@@ -125,23 +129,22 @@ SystemEventsApplication *system_events(void)
     return systemEvents;
 }
 
-void list(void)
+void printLoginItem(WOLoginItem *item)
 {
-    SystemEventsApplication *sys = system_events();
-    NSArray *items = [[sys loginItems] arrayByApplyingSelector:@selector(properties)];
-    for (NSDictionary *properties in items)
-    {
-        NSString *info = [NSString stringWithFormat:
-                          @"Name     : %@\n"
-                          @"  Kind   : %@\n"
-                          @"  Path   : %@\n"
-                          @"  Hidden?: %s\n",
-                          [properties objectForKey:@"name"],
-                          [properties objectForKey:@"kind"],
-                          [properties objectForKey:@"path"],
-                          [[properties objectForKey:@"hidden"] boolValue] ? "YES" : "NO"];
-        printf([info UTF8String]);
-    }
+    printf("%s login item:\n"
+           "  Name   : %s\n"
+           "  Path   : %s\n"
+           "  Hidden?: %s\n",
+           item.global ? "Global" : "Session", [item.name UTF8String], [item.path UTF8String], item.hidden ? "YES" : "NO");
+}
+
+void listLoginItems(void)
+{
+    WOLoginManager *manager = [WOLoginManager sharedManager];
+    for (WOLoginItem *item in [manager sessionLoginItems])
+        printLoginItem(item);
+    for (WOLoginItem *item in [manager globalLoginItems])
+        printLoginItem(item);
 }
 
 // helper method: add item to login items
