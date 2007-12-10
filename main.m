@@ -5,34 +5,51 @@
 //  Created by Wincent Colaiuta on 1 Mar 2004.
 //  Copyright 2004-2007 Wincent Colaiuta.
 
-// limitations:
-// - ignores arguments specified after options have been parsed with getopt
-
 #import <Foundation/Foundation.h>
 #import <unistd.h>                  /* for getopt() */
 #import "SystemEvents.h"
 
 // WOCommon headers
+#import "WOCommon/WOConvenienceMacros.h"
 #import "WOCommon/WOLoginItem.h"
-#import "WOCommon/WOLoginManager.h"
+#import "WOCommon/WOLoginItemList.h"
 
-// helper method: add item to login items
-void addLoginItem(NSString *path, BOOL hideOnLaunch);
+void usage(void)
+{
+    printf("Usage:      login-tool [-r name] [-a path [-H]]\n"
+           "            login-tool -h\n"
+           " -h         : show usage\n"
+           " -r name    : remove items matching name\n"
+           " -a path    : add item with path\n"
+           " -H         : set 'hide' attribute on added item\n"
+           " -l         : list items\n");
+}
 
-// helper method: remove item from login items: always operates on full path
-void removeLoginItemWithPath(NSString *path);
+void printLoginItem(WOLoginItem *item)
+{
+    NSCParameterAssert(item != nil);
+    NSCParameterAssert(item.name != nil);
+    NSCParameterAssert(item.path != nil);
 
-// helper method: remove item from login items: use with caution
-void removeLoginItemWithName(NSString *name);
+    printf("%s login item:\n"
+           "  Name   : %s\n"
+           "  Path   : %s\n"
+           "  Hidden?: %s\n",
+           item.global ? "Global" : "Session", [item.name UTF8String], [item.path UTF8String], item.hidden ? "YES" : "NO");
+}
 
-// helper method: does the actual work of removing login items
-void removeLoginItemWithNameOrPath(NSString *name, NSString *path);
+void listLoginItems(void)
+{
+    for (WOLoginItem *item in [WOLoginItemList globalLoginItems])
+        printLoginItem(item);
+    for (WOLoginItem *item in [WOLoginItemList sessionLoginItems])
+        printLoginItem(item);
+}
 
-// show usage instructions
-void usage(void);
-
-// list currently defined login items
-void listLoginItems(void);
+void printSuccess(BOOL success)
+{
+    printf(success ? "success\n" : "failure!\n");
+}
 
 int main (int argc, const char * argv[])
 {
@@ -42,6 +59,8 @@ int main (int argc, const char * argv[])
     BOOL                hide        = NO;
     int                 status      = EXIT_SUCCESS;
     int                 ret         = getopt(argc, (char * const *)argv, "hlr:a:H");
+
+    // TODO: accept multiple args eg. multiple -r multiple -a etc
     while (ret != -1)
     {
         switch (ret)
@@ -77,6 +96,12 @@ int main (int argc, const char * argv[])
 
         ret = getopt(argc, (char * const *)argv, "hr:a:H"); // get next option
     }
+    if (argc - optind > 0)      // non-option arguments not allowed
+    {
+        status = EXIT_FAILURE;
+        usage();
+        goto cleanup;
+    }
 
     if ((add == NULL) && hide)  // can't specify -H without -a
     {
@@ -87,165 +112,28 @@ int main (int argc, const char * argv[])
 
     if (remove != NULL)
     {
-        printf("Removing login item with name: %s\n", remove);
-        removeLoginItemWithName([NSString stringWithCString:remove]);
+        printf("Removing login items with name: %s... ", remove);
+        printSuccess([[WOLoginItemList sessionLoginItems] removeItemsWithName:[NSString stringWithCString:remove]]);
     }
 
     if (add != NULL)
     {
         if (hide)
-            printf("Adding login item with path: %s (hide on launch)\n", add);
+            printf("Adding login item with path: %s (hide on launch)... ", add);
         else
-            printf("Adding login item with path: %s (show on launch)\n", add);
+            printf("Adding login item with path: %s (show on launch)... ", add);
 
-        addLoginItem([NSString stringWithCString:add], hide);
+        // remove item if it already exists
+        NSString *path = [NSString stringWithUTF8String:add];
+        [[WOLoginItemList sessionLoginItems] removeItemWithPath:path];
+
+        WOLoginItem *item = [WOLoginItem loginItemWithName:nil path:path hidden:hide global:NO];
+        printSuccess([[WOLoginItemList sessionLoginItems] addItem:item]);
     }
 
 cleanup:
-    if (remove != NULL) free(remove);
-    if (add != NULL)    free(add);
-
+    WO_FREE(remove);
+    WO_FREE(add);
     [pool drain];
     return status;
-}
-
-// show usage instructions
-void usage(void)
-{
-    printf("Usage:      login-tool [-r item] [-a path [-H]]\n"
-           "            login-tool -h\n"
-           " -h         : show usage\n"
-           " -r item    : remove item\n"
-           " -a path    : add item (full path)\n"
-           " -H         : set Hide attribute on added item\n"
-           " -l         : list items\n");
-}
-
-SystemEventsApplication *system_events(void)
-{
-    static SystemEventsApplication *systemEvents = nil;
-    if (!systemEvents)
-        systemEvents = [SBApplication applicationWithBundleIdentifier:@"com.apple.systemevents"];
-    return systemEvents;
-}
-
-void printLoginItem(WOLoginItem *item)
-{
-    printf("%s login item:\n"
-           "  Name   : %s\n"
-           "  Path   : %s\n"
-           "  Hidden?: %s\n",
-           item.global ? "Global" : "Session", [item.name UTF8String], [item.path UTF8String], item.hidden ? "YES" : "NO");
-}
-
-void listLoginItems(void)
-{
-    WOLoginManager *manager = [WOLoginManager sharedManager];
-    for (WOLoginItem *item in [manager sessionLoginItems])
-        printLoginItem(item);
-    for (WOLoginItem *item in [manager globalLoginItems])
-        printLoginItem(item);
-}
-
-// helper method: add item to login items
-void addLoginItem(NSString *path, BOOL hideOnLaunch)
-{
-    // remove item if it already exists
-    removeLoginItemWithPath(path);
-
-#if SCRIPTING_BRIDGE_WORKS
-    // prepare login item and add it
-    NSDictionary *properties = [NSDictionary dictionaryWithObjectsAndKeys:
-        path,                                   @"Path",
-        [NSNumber numberWithBool:hideOnLaunch], @"Hide", nil];
-    SystemEventsApplication *sys = system_events();
-    Class loginItemClass = [sys classForScriptingClass:@"login item"];
-    SystemEventsLoginItem *item = [[loginItemClass alloc] initWithProperties:properties];
-
-    // doesn't work: nothing added to loginwindow.plist, nor to [sys loginItems] proxy
-    [[sys loginItems] addObject:item];
-#endif
-
-#if RAW_APPLE_EVENTS_WORK
-    // tell application "System Events" to make new login item at end with properties {path:"...", hidden:false}
-    const char *gizmo = "'kocl':type('logi'), 'insh':'insl'{'kobj':'null'(), 'kpos':enum('end ')}, 'prdt':"
-    "{'ppth':'utxt'(@), 'hidn':bool(@)}";
-
-    AppleEvent event;
-    NSData *data = [path dataUsingEncoding:NSUnicodeStringEncoding];
-    OSType target = 'sevs';
-
-    // doesn't work: returns 0 (noErr) but nothing added; running script from Script Editor also doesn't work
-    OSStatus err = AEBuildAppleEvent(kAECoreSuite, kAECreateElement, typeApplSignature, &target, sizeof(target),
-                                     kAutoGenerateReturnID, kAnyTransactionID, &event, NULL, gizmo, [data length], [data bytes],
-                                     hideOnLaunch ? true : false);
-    if (err != noErr)
-        fprintf(stderr, "Failed to add login item (AEBuildAppleEvent returned %d)\n", err);
-#endif
-
-    // last resort approach
-    NSDictionary        *loginItem  = [NSDictionary dictionaryWithObjectsAndKeys:
-                                       path,                                    @"Path",
-                                       [NSNumber numberWithBool:hideOnLaunch],  @"Hide", nil];
-    NSUserDefaults      *defs       = [NSUserDefaults standardUserDefaults];
-    NSMutableDictionary *loginDict  = [[defs persistentDomainForName:@"loginwindow"] mutableCopy];
-    if (!loginDict)
-        // no loginwindow.plist: create one from scratch
-        loginDict = [[NSMutableDictionary alloc] initWithCapacity:1];
-
-    NSMutableArray *items = [[loginDict objectForKey:@"AutoLaunchedApplicationDictionary"] mutableCopy];
-    if (!items)
-        // no items array: create one from scratch
-        items = [[NSMutableArray alloc] initWithCapacity:1];
-
-    // put object at end of list
-    [items insertObject:loginItem atIndex:[items count]];
-
-    // plug list back into loginwindow dictionary
-    [loginDict setObject:items forKey:@"AutoLaunchedApplicationDictionary"];
-
-    // flush to disk: actually works (changes written to loginwindow.plist) but System Events.app doesn't see them
-    [defs removePersistentDomainForName:@"loginwindow"];
-    [defs setPersistentDomain:loginDict forName:@"loginwindow"];
-    [defs synchronize];
-
-    // obtained using strings on /System/Library/PreferencePanes/Accounts.prefPane/Contents/MacOS/Accounts
-    NSDistributedNotificationCenter *center = [NSDistributedNotificationCenter defaultCenter];
-    [center postNotificationName:@"com.apple.loginItemsListDidChnage" object:nil]; // note typo
-    [center postNotificationName:@"com.apple.loginItemsListDidChange" object:nil]; // just in case Apple corrects the typo
-}
-
-// helper method: remove item from login items: always operates on full path
-void removeLoginItemWithPath(NSString *path)
-{
-    // this code factored out for ease of maintenance
-    removeLoginItemWithNameOrPath(nil, path);
-}
-
-// helper method: remove item from login items: use with caution
-void removeLoginItemWithName(NSString *name)
-{
-    // this code factored out for ease of maintenance
-    removeLoginItemWithNameOrPath(name, nil);
-}
-
-// helper method: does the actual work of removing login items
-void removeLoginItemWithNameOrPath(NSString *name, NSString *path)
-{
-    SystemEventsApplication *sys = system_events();
-    NSMutableArray *deleteable = [NSMutableArray array];
-    SBElementArray *items = [sys loginItems];
-    if ([items count] == 0) return;
-    for (SystemEventsLoginItem *item in items)
-    {
-        NSString *comparePath = [item path];
-
-        // test against path if defined + test against name if defined
-        if ((path && ([path isEqualToString:comparePath])) ||
-            (name && ([name isEqualToString:[comparePath lastPathComponent]])))
-            // can't delete while iterating; will do in a separate pass
-            [deleteable addObject:item];
-    }
-    for (SystemEventsLoginItem *item in deleteable)
-        [item delete];
 }
