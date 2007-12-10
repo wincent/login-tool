@@ -16,12 +16,13 @@
 
 void usage(void)
 {
-    printf("Usage:      login-tool [-r name] [-a path [-H]]\n"
-           "            login-tool -h\n"
+    printf("Usage:      login-tool -r name [-r name...]\n"
+           "            login-tool -H -a path [-a path...]\n"
+           "            login-tool [ -h | -l ]\n"
            " -h         : show usage\n"
-           " -r name    : remove items matching name\n"
-           " -a path    : add item with path\n"
-           " -H         : set 'hide' attribute on added item\n"
+           " -r         : remove item(s)\n"
+           " -a         : add item(s)\n"
+           " -H         : set 'hide' attribute on added item(s)\n"
            " -l         : list items\n");
 }
 
@@ -54,8 +55,9 @@ void printSuccess(BOOL success)
 int main (int argc, const char * argv[])
 {
     NSAutoreleasePool   *pool       = [[NSAutoreleasePool alloc] init];
-    char                *remove     = NULL;
-    char                *add        = NULL;
+    NSMutableArray      *remove     = [NSMutableArray array];
+    NSMutableArray      *add        = [NSMutableArray array];
+    char                *arg        = NULL;
     BOOL                hide        = NO;
     int                 status      = EXIT_SUCCESS;
     int                 ret         = getopt(argc, (char * const *)argv, "hlr:a:H");
@@ -63,6 +65,7 @@ int main (int argc, const char * argv[])
     // TODO: accept multiple args eg. multiple -r multiple -a etc
     while (ret != -1)
     {
+        WO_FREE(arg);
         switch (ret)
         {
             case 'h':       // show help
@@ -74,13 +77,17 @@ int main (int argc, const char * argv[])
                 break;
 
             case 'r':       // remove item (filename only)
-                remove = strdup(optarg);
-                if (remove == NULL) return 1;
+                arg = strdup(optarg);
+                if (arg == NULL)
+                    return EXIT_FAILURE;
+                [remove addObject:[NSString stringWithUTF8String:arg]];
                 break;
 
             case 'a':       // add item (full path)
-                add = strdup(optarg);
-                if (add == NULL) return 1;
+                arg = strdup(optarg);
+                if (arg == NULL)
+                    return EXIT_FAILURE;
+                [add addObject:[NSString stringWithUTF8String:arg]];
                 break;
 
             case 'H':       // set "Hide" attribute for added item
@@ -88,7 +95,7 @@ int main (int argc, const char * argv[])
                 break;
 
             case '?':       // unrecognized option or missing argument
-                default:
+            default:
                 status = EXIT_FAILURE;
                 usage();
                 goto cleanup;
@@ -103,28 +110,24 @@ int main (int argc, const char * argv[])
         goto cleanup;
     }
 
-    if ((add == NULL) && hide)  // can't specify -H without -a
+    if ((add.count == 0) && hide)  // can't specify -H without -a
     {
         status = EXIT_FAILURE;
         usage();
         goto cleanup;
     }
 
-    if (remove != NULL)
+    for (NSString *name in remove)
     {
-        printf("Removing login items with name: %s... ", remove);
-        printSuccess([[WOLoginItemList sessionLoginItems] removeItemsWithName:[NSString stringWithCString:remove]]);
+        printf("Removing login items with name: %s... ", [name UTF8String]);
+        printSuccess([[WOLoginItemList sessionLoginItems] removeItemsWithName:name]);
     }
 
-    if (add != NULL)
+    for (NSString *path in add)
     {
-        if (hide)
-            printf("Adding login item with path: %s (hide on launch)... ", add);
-        else
-            printf("Adding login item with path: %s (show on launch)... ", add);
+        printf("Adding login item with path: %s (%s on launch)... ", [path UTF8String], hide ? "hide" : "show");
 
         // remove item if it already exists
-        NSString *path = [NSString stringWithUTF8String:add];
         [[WOLoginItemList sessionLoginItems] removeItemWithPath:path];
 
         WOLoginItem *item = [WOLoginItem loginItemWithName:nil path:path hidden:hide global:NO];
@@ -132,8 +135,7 @@ int main (int argc, const char * argv[])
     }
 
 cleanup:
-    WO_FREE(remove);
-    WO_FREE(add);
+    WO_FREE(arg);
     [pool drain];
     return status;
 }
