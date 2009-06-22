@@ -10,7 +10,6 @@
 		8DD76F9A0486AA7600D96B5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
 		BC12F34B0D07503300C844E9 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC12F34A0D07503300C844E9 /* Carbon.framework */; };
-		BC585A100FEFF4D000F7BD9E /* NSDictionary+WOCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5859FF0FEFF4B000F7BD9E /* NSDictionary+WOCreation.m */; };
 		BC585A110FEFF4D000F7BD9E /* NSMutableString+WOEditingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = BC5859FE0FEFF4B000F7BD9E /* NSMutableString+WOEditingUtilities.m */; };
 		BC585A120FEFF4D000F7BD9E /* NSString+WOCreation.m in Sources */ = {isa = PBXBuildFile; fileRef = BC585A070FEFF4B000F7BD9E /* NSString+WOCreation.m */; };
 		BC585A130FEFF4D000F7BD9E /* NSString+WOFileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = BC585A060FEFF4B000F7BD9E /* NSString+WOFileUtilities.m */; };
@@ -18,7 +17,6 @@
 		BC585A150FEFF4D000F7BD9E /* WOLoginItemList.m in Sources */ = {isa = PBXBuildFile; fileRef = BC585A080FEFF4B000F7BD9E /* WOLoginItemList.m */; };
 		BC585A160FEFF4D000F7BD9E /* WOLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC585A030FEFF4B000F7BD9E /* WOLogManager.m */; };
 		BC585A170FEFF4D000F7BD9E /* WOObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BC585A020FEFF4B000F7BD9E /* WOObject.m */; };
-		BC5FA4EB0D06BD9900A5957F /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC5FA4EA0D06BD9900A5957F /* ScriptingBridge.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,13 +26,11 @@
 		BC12F34A0D07503300C844E9 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = /System/Library/Frameworks/Carbon.framework; sourceTree = "<absolute>"; };
 		BC5859F90FEFF47000F7BD9E /* WOPublic */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WOPublic; sourceTree = "<group>"; };
 		BC5859FE0FEFF4B000F7BD9E /* NSMutableString+WOEditingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSMutableString+WOEditingUtilities.m"; path = "../../WOPublic/src/NSMutableString+WOEditingUtilities.m"; sourceTree = SOURCE_ROOT; };
-		BC5859FF0FEFF4B000F7BD9E /* NSDictionary+WOCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+WOCreation.m"; path = "../../WOPublic/src/NSDictionary+WOCreation.m"; sourceTree = SOURCE_ROOT; };
 		BC585A000FEFF4B000F7BD9E /* NSMutableString+WOEditingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSMutableString+WOEditingUtilities.h"; path = "../../WOPublic/src/NSMutableString+WOEditingUtilities.h"; sourceTree = SOURCE_ROOT; };
 		BC585A010FEFF4B000F7BD9E /* NSString+WOCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+WOCreation.h"; path = "../../WOPublic/src/NSString+WOCreation.h"; sourceTree = SOURCE_ROOT; };
 		BC585A020FEFF4B000F7BD9E /* WOObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WOObject.m; path = ../../WOPublic/src/WOObject.m; sourceTree = SOURCE_ROOT; };
 		BC585A030FEFF4B000F7BD9E /* WOLogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WOLogManager.m; path = ../../WOPublic/src/WOLogManager.m; sourceTree = SOURCE_ROOT; };
 		BC585A040FEFF4B000F7BD9E /* WOLoginItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WOLoginItem.h; path = ../../WOPublic/src/WOLoginItem.h; sourceTree = SOURCE_ROOT; };
-		BC585A050FEFF4B000F7BD9E /* NSDictionary+WOCreation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+WOCreation.h"; path = "../../WOPublic/src/NSDictionary+WOCreation.h"; sourceTree = SOURCE_ROOT; };
 		BC585A060FEFF4B000F7BD9E /* NSString+WOFileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+WOFileUtilities.m"; path = "../../WOPublic/src/NSString+WOFileUtilities.m"; sourceTree = SOURCE_ROOT; };
 		BC585A070FEFF4B000F7BD9E /* NSString+WOCreation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+WOCreation.m"; path = "../../WOPublic/src/NSString+WOCreation.m"; sourceTree = SOURCE_ROOT; };
 		BC585A080FEFF4B000F7BD9E /* WOLoginItemList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WOLoginItemList.m; path = ../../WOPublic/src/WOLoginItemList.m; sourceTree = SOURCE_ROOT; };
@@ -47,7 +43,6 @@
 		BC5FA4BB0D06B68200A5957F /* debug-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "debug-style.xcconfig"; path = "../../buildtools/debug-style.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BC5FA4BC0D06B68200A5957F /* foundation-tool-target.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "foundation-tool-target.xcconfig"; path = "../../buildtools/foundation-tool-target.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BC5FA4BD0D06B68200A5957F /* release-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "release-style.xcconfig"; path = "../../buildtools/release-style.xcconfig"; sourceTree = SOURCE_ROOT; };
-		BC5FA4EA0D06BD9900A5957F /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
 		C6859EA3029092ED04C91782 /* login-tool.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = "login-tool.1"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -57,7 +52,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */,
-				BC5FA4EB0D06BD9900A5957F /* ScriptingBridge.framework in Frameworks */,
 				BC12F34B0D07503300C844E9 /* Carbon.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -91,7 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				BC12F34A0D07503300C844E9 /* Carbon.framework */,
-				BC5FA4EA0D06BD9900A5957F /* ScriptingBridge.framework */,
 				08FB779EFE84155DC02AAC07 /* Foundation.framework */,
 			);
 			name = "External Frameworks and Libraries";
@@ -108,8 +101,6 @@
 		BC5859FA0FEFF47300F7BD9E /* WOPublic */ = {
 			isa = PBXGroup;
 			children = (
-				BC585A050FEFF4B000F7BD9E /* NSDictionary+WOCreation.h */,
-				BC5859FF0FEFF4B000F7BD9E /* NSDictionary+WOCreation.m */,
 				BC585A000FEFF4B000F7BD9E /* NSMutableString+WOEditingUtilities.h */,
 				BC5859FE0FEFF4B000F7BD9E /* NSMutableString+WOEditingUtilities.m */,
 				BC585A010FEFF4B000F7BD9E /* NSString+WOCreation.h */,
@@ -189,7 +180,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC585A100FEFF4D000F7BD9E /* NSDictionary+WOCreation.m in Sources */,
 				BC585A110FEFF4D000F7BD9E /* NSMutableString+WOEditingUtilities.m in Sources */,
 				BC585A120FEFF4D000F7BD9E /* NSString+WOCreation.m in Sources */,
 				BC585A130FEFF4D000F7BD9E /* NSString+WOFileUtilities.m in Sources */,
