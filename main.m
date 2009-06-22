@@ -9,10 +9,10 @@
 #import <unistd.h>                  /* for getopt() */
 #import "SystemEvents.h"
 
-// WOCommon headers
-#import "WOCommon/WOConvenienceMacros.h"
-#import "WOCommon/WOLoginItem.h"
-#import "WOCommon/WOLoginItemList.h"
+// WOPublic headers
+#import "WOPublic/WOConvenienceMacros.h"
+#import "WOPublic/WOLoginItem.h"
+#import "WOPublic/WOLoginItemList.h"
 
 void usage(void)
 {
