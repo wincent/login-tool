@@ -1,13 +1,10 @@
+// main.m
+// login-tool
 //
-//  main.m
-//  login-tool
-//
-//  Created by Wincent Colaiuta on 1 Mar 2004.
-//  Copyright 2004-2007 Wincent Colaiuta.
+// Copyright 2004-2009 Wincent Colaiuta. All rights reserved.
 
 #import <Foundation/Foundation.h>
 #import <unistd.h>                  /* for getopt() */
-#import "SystemEvents.h"
 
 // WOPublic headers
 #import "WOPublic/WOConvenienceMacros.h"

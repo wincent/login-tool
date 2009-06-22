@@ -6,20 +6,6 @@
 	objectVersion = 44;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		BC5FA4CD0D06BAC400A5957F /* Update System Events header */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = BC5FA4D10D06BAC800A5957F /* Build configuration list for PBXAggregateTarget "Update System Events header" */;
-			buildPhases = (
-				BC5FA4CC0D06BAC400A5957F /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = "Update System Events header";
-			productName = "Update System Events header";
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		8DD76F9A0486AA7600D96B5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
@@ -61,7 +47,6 @@
 		BC5FA4BB0D06B68200A5957F /* debug-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "debug-style.xcconfig"; path = "../../buildtools/debug-style.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BC5FA4BC0D06B68200A5957F /* foundation-tool-target.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "foundation-tool-target.xcconfig"; path = "../../buildtools/foundation-tool-target.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BC5FA4BD0D06B68200A5957F /* release-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "release-style.xcconfig"; path = "../../buildtools/release-style.xcconfig"; sourceTree = SOURCE_ROOT; };
-		BC5FA4DC0D06BB8E00A5957F /* SystemEvents.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SystemEvents.h; sourceTree = "<group>"; };
 		BC5FA4EA0D06BD9900A5957F /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
 		C6859EA3029092ED04C91782 /* login-tool.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = "login-tool.1"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,7 +71,6 @@
 				BC5859F90FEFF47000F7BD9E /* WOPublic */,
 				BC5859FA0FEFF47300F7BD9E /* WOPublic */,
 				BC5FA4B40D06B65600A5957F /* Configuration */,
-				BC5FA4D90D06BB7D00A5957F /* Headers */,
 				08FB7795FE84155DC02AAC07 /* Source */,
 				C6859EA2029092E104C91782 /* Documentation */,
 				08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */,
@@ -155,14 +139,6 @@
 			name = Configuration;
 			sourceTree = "<group>";
 		};
-		BC5FA4D90D06BB7D00A5957F /* Headers */ = {
-			isa = PBXGroup;
-			children = (
-				BC5FA4DC0D06BB8E00A5957F /* SystemEvents.h */,
-			);
-			name = Headers;
-			sourceTree = "<group>";
-		};
 		C6859EA2029092E104C91782 /* Documentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,26 +180,9 @@
 			projectRoot = "";
 			targets = (
 				8DD76F960486AA7600D96B5E /* login-tool */,
-				BC5FA4CD0D06BAC400A5957F /* Update System Events header */,
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		BC5FA4CC0D06BAC400A5957F /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = ". \"${SRCROOT}/SystemEvents.sh\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8DD76F990486AA7600D96B5E /* Sources */ = {
@@ -274,20 +233,6 @@
 			};
 			name = Release;
 		};
-		BC5FA4CE0D06BAC500A5957F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "Update System Events header";
-			};
-			name = Debug;
-		};
-		BC5FA4CF0D06BAC500A5957F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "Update System Events header";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -305,15 +250,6 @@
 			buildConfigurations = (
 				BC5FA4A50D06AF4F00A5957F /* Debug */,
 				BC5FA4A60D06AF4F00A5957F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BC5FA4D10D06BAC800A5957F /* Build configuration list for PBXAggregateTarget "Update System Events header" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BC5FA4CE0D06BAC500A5957F /* Debug */,
-				BC5FA4CF0D06BAC500A5957F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
