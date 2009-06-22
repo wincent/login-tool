@@ -218,6 +218,7 @@
 		};
 		BC5FA4A60D06AF4F00A5957F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC5FA4BC0D06B68200A5957F /* foundation-tool-target.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "login-tool";
 			};
