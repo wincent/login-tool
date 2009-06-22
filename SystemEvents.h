@@ -6,66 +6,13 @@
 #import <ScriptingBridge/ScriptingBridge.h>
 
 
-@class SystemEventsItem, SystemEventsItem, SystemEventsApplication, SystemEventsColor, SystemEventsDocument, SystemEventsWindow, SystemEventsAttributeRun, SystemEventsCharacter, SystemEventsParagraph, SystemEventsText, SystemEventsAttachment, SystemEventsWord, SystemEventsDesktop, SystemEventsExposePreferencesObject, SystemEventsScreenCorner, SystemEventsShortcut, SystemEventsSpacesPreferencesObject, SystemEventsSpacesShortcut, SystemEventsCDAndDVDPreferencesObject, SystemEventsInsertionPreference, SystemEventsConfiguration, SystemEventsInterface, SystemEventsLocation, SystemEventsNetworkPreferencesObject, SystemEventsService, SystemEventsUser, SystemEventsLoginItem, SystemEventsAppearancePreferencesObject, SystemEventsSecurityPreferencesObject, SystemEventsDockPreferencesObject, SystemEventsDiskItem, SystemEventsAlias, SystemEventsDisk, SystemEventsDomain, SystemEventsClassicDomainObject, SystemEventsFile, SystemEventsFilePackage, SystemEventsFolder, SystemEventsLocalDomainObject, SystemEventsNetworkDomainObject, SystemEventsSystemDomainObject, SystemEventsUserDomainObject, SystemEventsFolderAction, SystemEventsScript, SystemEventsAction, SystemEventsAttribute, SystemEventsUIElement, SystemEventsBrowser, SystemEventsBusyIndicator, SystemEventsButton, SystemEventsCheckbox, SystemEventsColorWell, SystemEventsColumn, SystemEventsComboBox, SystemEventsDrawer, SystemEventsGroup, SystemEventsGrowArea, SystemEventsImage, SystemEventsIncrementor, SystemEventsList, SystemEventsMenu, SystemEventsMenuBar, SystemEventsMenuBarItem, SystemEventsMenuButton, SystemEventsMenuItem, SystemEventsOutline, SystemEventsPopUpButton, SystemEventsProcess, SystemEventsApplicationProcess, SystemEventsDeskAccessoryProcess, SystemEventsProgressIndicator, SystemEventsRadioButton, SystemEventsRadioGroup, SystemEventsRelevanceIndicator, SystemEventsRow, SystemEventsScrollArea, SystemEventsScrollBar, SystemEventsSheet, SystemEventsSlider, SystemEventsSplitter, SystemEventsSplitterGroup, SystemEventsStaticText, SystemEventsTabGroup, SystemEventsTable, SystemEventsTextArea, SystemEventsTextField, SystemEventsToolBar, SystemEventsValueIndicator, SystemEventsWindow, SystemEventsPropertyListFile, SystemEventsPropertyListItem, SystemEventsAnnotation, SystemEventsQuickTimeData, SystemEventsAudioData, SystemEventsMovieData, SystemEventsQuickTimeFile, SystemEventsAudioFile, SystemEventsMovieFile, SystemEventsTrack, SystemEventsApplication, SystemEventsXMLAttribute, SystemEventsXMLData, SystemEventsXMLElement, SystemEventsXMLFile, SystemEventsPrintSettings;
+@class SystemEventsItem, SystemEventsItem, SystemEventsApplication, SystemEventsColor, SystemEventsDocument, SystemEventsWindow, SystemEventsAttributeRun, SystemEventsCharacter, SystemEventsParagraph, SystemEventsText, SystemEventsAttachment, SystemEventsWord, SystemEventsAppearancePreferencesObject, SystemEventsDesktop, SystemEventsCDAndDVDPreferencesObject, SystemEventsInsertionPreference, SystemEventsDockPreferencesObject, SystemEventsConfiguration, SystemEventsInterface, SystemEventsLocation, SystemEventsNetworkPreferencesObject, SystemEventsService, SystemEventsDiskItem, SystemEventsAlias, SystemEventsDisk, SystemEventsDomain, SystemEventsClassicDomainObject, SystemEventsFile, SystemEventsFilePackage, SystemEventsFolder, SystemEventsLocalDomainObject, SystemEventsNetworkDomainObject, SystemEventsSystemDomainObject, SystemEventsUserDomainObject, SystemEventsFolderAction, SystemEventsScript, SystemEventsAction, SystemEventsAttribute, SystemEventsUIElement, SystemEventsBrowser, SystemEventsBusyIndicator, SystemEventsButton, SystemEventsCheckbox, SystemEventsColorWell, SystemEventsColumn, SystemEventsComboBox, SystemEventsDrawer, SystemEventsGroup, SystemEventsGrowArea, SystemEventsImage, SystemEventsIncrementor, SystemEventsList, SystemEventsMenu, SystemEventsMenuBar, SystemEventsMenuBarItem, SystemEventsMenuButton, SystemEventsMenuItem, SystemEventsOutline, SystemEventsPopUpButton, SystemEventsProcess, SystemEventsApplicationProcess, SystemEventsDeskAccessoryProcess, SystemEventsProgressIndicator, SystemEventsRadioButton, SystemEventsRadioGroup, SystemEventsRelevanceIndicator, SystemEventsRow, SystemEventsScrollArea, SystemEventsScrollBar, SystemEventsSheet, SystemEventsSlider, SystemEventsSplitter, SystemEventsSplitterGroup, SystemEventsStaticText, SystemEventsTabGroup, SystemEventsTable, SystemEventsTextArea, SystemEventsTextField, SystemEventsToolBar, SystemEventsValueIndicator, SystemEventsWindow, SystemEventsPropertyListFile, SystemEventsPropertyListItem, SystemEventsAnnotation, SystemEventsQuickTimeData, SystemEventsAudioData, SystemEventsMovieData, SystemEventsQuickTimeFile, SystemEventsAudioFile, SystemEventsMovieFile, SystemEventsTrack, SystemEventsApplication, SystemEventsXMLAttribute, SystemEventsXMLData, SystemEventsXMLElement, SystemEventsXMLFile, SystemEventsExposePreferencesObject, SystemEventsScreenCorner, SystemEventsShortcut, SystemEventsSpacesPreferencesObject, SystemEventsSpacesShortcut, SystemEventsUser, SystemEventsLoginItem, SystemEventsSecurityPreferencesObject, SystemEventsPrintSettings;
 
 typedef enum {
 	SystemEventsSavoAsk = 'ask ' /* Ask the user whether or not to save the file. */,
 	SystemEventsSavoNo = 'no  ' /* Do not save the file. */,
 	SystemEventsSavoYes = 'yes ' /* Save the file. */
 } SystemEventsSavo;
-
-typedef enum {
-	SystemEventsEpfkF1 = 'F1ky' /* F1 */,
-	SystemEventsEpfkF10 = 'F10k' /* F10 */,
-	SystemEventsEpfkF11 = 'F11k' /* F11 */,
-	SystemEventsEpfkF12 = 'F12k' /* F12 */,
-	SystemEventsEpfkF13 = 'F13k' /* F13 */,
-	SystemEventsEpfkF2 = 'F2ky' /* F2 */,
-	SystemEventsEpfkF3 = 'F3ky' /* F3 */,
-	SystemEventsEpfkF4 = 'F4ky' /* F4 */,
-	SystemEventsEpfkF5 = 'F5ky' /* F5 */,
-	SystemEventsEpfkF6 = 'F6ky' /* F6 */,
-	SystemEventsEpfkF7 = 'F7ky' /* F7 */,
-	SystemEventsEpfkF8 = 'F8ky' /* F8 */,
-	SystemEventsEpfkF9 = 'F9ky' /* F9 */,
-	SystemEventsEpfkLeftCommand = 'Lcmd' /* left command */,
-	SystemEventsEpfkLeftControl = 'Lctl' /* left control */,
-	SystemEventsEpfkLeftOption = 'Lopt' /* left option */,
-	SystemEventsEpfkLeftShift = 'Lsht' /* left shift */,
-	SystemEventsEpfkNone = 'none' /* none */,
-	SystemEventsEpfkRightCommand = 'Rcmd' /* right command */,
-	SystemEventsEpfkRightControl = 'Rctl' /* right control */,
-	SystemEventsEpfkRightOption = 'Ropt' /* right option */,
-	SystemEventsEpfkRightShift = 'Rsht' /* right shift */,
-	SystemEventsEpfkSecondaryFunctionKey = 'SFky' /* secondary function key */
-} SystemEventsEpfk;
-
-typedef enum {
-	SystemEventsEpacAllWindows = 'allw' /* all windows */,
-	SystemEventsEpacApplicationWindows = 'appw' /* application windows */,
-	SystemEventsEpacDashboard = 'dash' /* dashboard */,
-	SystemEventsEpacDisableScreenSaver = 'disc' /* disable screen saver */,
-	SystemEventsEpacNone = 'none' /* none */,
-	SystemEventsEpacShowDesktop = 'desk' /* show desktop */,
-	SystemEventsEpacShowSpaces = 'spcs' /* show spaces */,
-	SystemEventsEpacSleepDisplay = 'diss' /* sleep display */,
-	SystemEventsEpacStartScreenSaver = 'star' /* start screen saver */
-} SystemEventsEpac;
-
-typedef enum {
-	SystemEventsEpmdCommand = 'cmdm' /* command */,
-	SystemEventsEpmdControl = 'ctlm' /* control */,
-	SystemEventsEpmdNone = 'none' /* none */,
-	SystemEventsEpmdOption = 'optm' /* option */,
-	SystemEventsEpmdShift = 'shtm' /* shift */
-} SystemEventsEpmd;
-
-typedef enum {
-	SystemEventsDhacAskWhatToDo = 'dhas' /* ask what to do */,
-	SystemEventsDhacIgnore = 'dhig' /* ignore */,
-	SystemEventsDhacOpenApplication = 'dhap' /* open application */,
-	SystemEventsDhacRunAScript = 'dhrs' /* run a script */
-} SystemEventsDhac;
 
 typedef enum {
 	SystemEventsAppeBlue = 'blue' /* blue */,
@@ -101,6 +48,13 @@ typedef enum {
 	SystemEventsHicoRed = 'red ' /* red */,
 	SystemEventsHicoSilver = 'slvr' /* silver */
 } SystemEventsHico;
+
+typedef enum {
+	SystemEventsDhacAskWhatToDo = 'dhas' /* ask what to do */,
+	SystemEventsDhacIgnore = 'dhig' /* ignore */,
+	SystemEventsDhacOpenApplication = 'dhap' /* open application */,
+	SystemEventsDhacRunAScript = 'dhrs' /* run a script */
+} SystemEventsDhac;
 
 typedef enum {
 	SystemEventsDplsBottom = 'bott' /* bottom */,
@@ -165,6 +119,52 @@ typedef enum {
 	SystemEventsPrmdNormal = 'norm' /* normal */,
 	SystemEventsPrmdSlideShow = 'pmss' /* slide show */
 } SystemEventsPrmd;
+
+typedef enum {
+	SystemEventsEpfkF1 = 'F1ky' /* F1 */,
+	SystemEventsEpfkF10 = 'F10k' /* F10 */,
+	SystemEventsEpfkF11 = 'F11k' /* F11 */,
+	SystemEventsEpfkF12 = 'F12k' /* F12 */,
+	SystemEventsEpfkF13 = 'F13k' /* F13 */,
+	SystemEventsEpfkF2 = 'F2ky' /* F2 */,
+	SystemEventsEpfkF3 = 'F3ky' /* F3 */,
+	SystemEventsEpfkF4 = 'F4ky' /* F4 */,
+	SystemEventsEpfkF5 = 'F5ky' /* F5 */,
+	SystemEventsEpfkF6 = 'F6ky' /* F6 */,
+	SystemEventsEpfkF7 = 'F7ky' /* F7 */,
+	SystemEventsEpfkF8 = 'F8ky' /* F8 */,
+	SystemEventsEpfkF9 = 'F9ky' /* F9 */,
+	SystemEventsEpfkLeftCommand = 'Lcmd' /* left command */,
+	SystemEventsEpfkLeftControl = 'Lctl' /* left control */,
+	SystemEventsEpfkLeftOption = 'Lopt' /* left option */,
+	SystemEventsEpfkLeftShift = 'Lsht' /* left shift */,
+	SystemEventsEpfkNone = 'none' /* none */,
+	SystemEventsEpfkRightCommand = 'Rcmd' /* right command */,
+	SystemEventsEpfkRightControl = 'Rctl' /* right control */,
+	SystemEventsEpfkRightOption = 'Ropt' /* right option */,
+	SystemEventsEpfkRightShift = 'Rsht' /* right shift */,
+	SystemEventsEpfkSecondaryFunctionKey = 'SFky' /* secondary function key */
+} SystemEventsEpfk;
+
+typedef enum {
+	SystemEventsEpacAllWindows = 'allw' /* all windows */,
+	SystemEventsEpacApplicationWindows = 'appw' /* application windows */,
+	SystemEventsEpacDashboard = 'dash' /* dashboard */,
+	SystemEventsEpacDisableScreenSaver = 'disc' /* disable screen saver */,
+	SystemEventsEpacNone = 'none' /* none */,
+	SystemEventsEpacShowDesktop = 'desk' /* show desktop */,
+	SystemEventsEpacShowSpaces = 'spcs' /* show spaces */,
+	SystemEventsEpacSleepDisplay = 'diss' /* sleep display */,
+	SystemEventsEpacStartScreenSaver = 'star' /* start screen saver */
+} SystemEventsEpac;
+
+typedef enum {
+	SystemEventsEpmdCommand = 'cmdm' /* command */,
+	SystemEventsEpmdControl = 'ctlm' /* control */,
+	SystemEventsEpmdNone = 'none' /* none */,
+	SystemEventsEpmdOption = 'optm' /* option */,
+	SystemEventsEpmdShift = 'shtm' /* shift */
+} SystemEventsEpmd;
 
 typedef enum {
 	SystemEventsEnumStandard = 'lwst' /* Standard PostScript error handling */,
@@ -373,6 +373,30 @@ typedef enum {
 
 
 /*
+ * Appearance Suite
+ */
+
+// A collection of appearance preferences
+@interface SystemEventsAppearancePreferencesObject : SystemEventsItem
+
+@property SystemEventsAppe appearance;  // the overall look of buttons, menus and windows
+@property BOOL doubleClickMinimizes;  // Does double clicking the title bar minimize a window?
+@property NSInteger fontSmoothingLimit;  // the font size at or below which font smoothing is turned off
+@property SystemEventsFtss fontSmoothingStyle;  // the method used for smoothing fonts
+@property (copy) NSColor *highlightColor;  // color used for hightlighting selected text and lists
+@property NSInteger recentApplicationsLimit;  // the number of recent applications to track
+@property NSInteger recentDocumentsLimit;  // the number of recent documents to track
+@property NSInteger recentServersLimit;  // the number of recent servers to track
+@property SystemEventsSclp scrollArrowPlacement;  // the placement of the scroll arrows
+@property SystemEventsSclb scrollBarAction;  // the action performed by clicking the scroll bar
+@property BOOL smoothScrolling;  // Is smooth scrolling used?
+
+
+@end
+
+
+
+/*
  * Desktop Suite
  */
 
@@ -385,70 +409,6 @@ typedef enum {
 @property NSInteger pictureRotation;  // never, using interval, using login, after sleep
 @property (copy) SystemEventsAlias *picturesFolder;  // path to folder containing pictures for changing desktop background
 @property BOOL randomOrder;  // turn on for random ordering of changing desktop pictures
-
-
-@end
-
-
-
-/*
- * Expose Preferences Suite
- */
-
-// user's expose and dashboard mouse and key preferences
-@interface SystemEventsExposePreferencesObject : SystemEventsItem
-
-@property (copy, readonly) SystemEventsShortcut *allWindowsShortcut;  // the key and mouse binding shortcuts for showing the all application windows
-@property (copy, readonly) SystemEventsShortcut *applicationWindowsShortcut;  // the key and mouse binding shortcuts for showing the current application windows
-@property (copy, readonly) SystemEventsScreenCorner *bottomLeftScreenCorner;  // the bottom left screen corner
-@property (copy, readonly) SystemEventsScreenCorner *bottomRightScreenCorner;  // the bottom right screen corner
-@property (copy, readonly) SystemEventsShortcut *dashboardShortcut;  // the key and mouse binding shortcuts for showing the dashboard
-@property (copy, readonly) SystemEventsShortcut *showDesktopShortcut;  // the key and mouse binding shortcuts for showing the desktop
-@property (copy, readonly) SystemEventsShortcut *showSpacesShortcut;  // the key and mouse binding shortcuts for showing spaces
-@property (copy, readonly) SystemEventsSpacesPreferencesObject *spacesPreferences;  // the spaces preferences
-@property (copy, readonly) SystemEventsScreenCorner *topLeftScreenCorner;  // the top left screen corner
-@property (copy, readonly) SystemEventsScreenCorner *topRightScreenCorner;  // the top right screen corner
-
-
-@end
-
-// a screen corner location for a specific expose or dashboard feature
-@interface SystemEventsScreenCorner : SystemEventsItem
-
-@property SystemEventsEpac activity;  // activity for a specific screen corner
-@property SystemEventsEpmd modifiers;  // keyboard modifiers used for a specific screen corner, passed as string or list
-
-
-@end
-
-// a keyboard or mouse shortcut for a specific expose or dashboard feature
-@interface SystemEventsShortcut : SystemEventsItem
-
-@property SystemEventsEpfk functionKey;  // keyboard key for a specific shortcut, not all keyboards support all possible function keys
-@property SystemEventsEpmd functionKeyModifiers;  // keyboard modifiers used for a specific function key, passed as string or list
-@property NSInteger mouseButton;  // mouse button for a specific shortcut (between 2 and the users number of buttons, 0 or none to remove the property)
-@property SystemEventsEpmd mouseButtonModifiers;  // keyboard modifiers used for a specific mouse button, passed as string or list
-
-
-@end
-
-// user's spaces application bindings and navigation preferences
-@interface SystemEventsSpacesPreferencesObject : SystemEventsItem
-
-@property (copy) NSDictionary *applicationBindings;  // binding of applications to specific spaces
-@property (copy, readonly) SystemEventsSpacesShortcut *arrowKeyModifiers;  // keyboard modifiers used controlling the arrow key navigation through spaces
-@property (copy, readonly) SystemEventsSpacesShortcut *numbersKeyModifiers;  // keyboard modifiers used controlling the number key navigation through spaces
-@property NSInteger spacesColumns;  // number of columns of spaces
-@property BOOL spacesEnabled;  // is spaces enabled?
-@property NSInteger spacesRows;  // number of rows of spaces
-
-
-@end
-
-// The keyboard modifiers for a specific spaces navigation shortcut
-@interface SystemEventsSpacesShortcut : SystemEventsItem
-
-@property SystemEventsEpmd keyModifiers;  // modifiers used for a specific function key, passed as string or list
 
 
 @end
@@ -477,6 +437,26 @@ typedef enum {
 @property (copy) SystemEventsAlias *customApplication;  // application to launch or activate on the insertion of media
 @property (copy) SystemEventsAlias *customScript;  // AppleScript to launch or activate on the insertion of media
 @property SystemEventsDhac insertionAction;  // action to perform on media insertion
+
+
+@end
+
+
+
+/*
+ * Dock Preferences Suite
+ */
+
+// user's dock preferences
+@interface SystemEventsDockPreferencesObject : SystemEventsItem
+
+@property BOOL animate;  // is the animation of opening applications on or off?
+@property BOOL autohide;  // is autohiding the dock on or off?
+@property double dockSize;  // size/height of the items (between 0.0 (minimum) and 1.0 (maximum))
+@property SystemEventsDpls location;  // location on screen
+@property BOOL magnification;  // is magnification on or off?
+@property double magnificationSize;  // maximum magnification size when magnification is on (between 0.0 (minimum) and 1.0 (maximum))
+@property SystemEventsDpef minimizeEffect;  // minimization effect
 
 
 @end
@@ -547,103 +527,6 @@ typedef enum {
 @property (copy, readonly) SystemEventsInterface *interface;  // the interface the service is built on
 @property (readonly) NSInteger kind;  // the type of service
 @property (copy) NSString *name;  // the name of the service
-
-
-@end
-
-
-
-/*
- * Accounts Suite
- */
-
-// user account
-@interface SystemEventsUser : SystemEventsItem
-
-@property (copy, readonly) NSString *fullName;  // user's full name
-@property (copy, readonly) SystemEventsAlias *homeDirectory;  // path to user's home directory
-@property (copy, readonly) NSString *name;  // user's short name
-@property (copy) SystemEventsAlias *picturePath;  // path to user's picture. Can be set for current user only!
-
-
-@end
-
-
-
-/*
- * Login Items Suite
- */
-
-// an item to be launched or opened at login
-@interface SystemEventsLoginItem : SystemEventsItem
-
-@property BOOL hidden;  // Is the Login Item hidden when launched?
-@property (copy, readonly) NSString *kind;  // the file type of the Login Item
-@property (copy, readonly) NSString *name;  // the name of the Login Item
-@property (copy, readonly) NSString *path;  // the file system path to the Login Item
-
-
-@end
-
-
-
-/*
- * Appearance Suite
- */
-
-// A collection of appearance preferences
-@interface SystemEventsAppearancePreferencesObject : SystemEventsItem
-
-@property SystemEventsAppe appearance;  // the overall look of buttons, menus and windows
-@property BOOL doubleClickMinimizes;  // Does double clicking the title bar minimize a window?
-@property NSInteger fontSmoothingLimit;  // the font size at or below which font smoothing is turned off
-@property SystemEventsFtss fontSmoothingStyle;  // the method used for smoothing fonts
-@property (copy) NSColor *highlightColor;  // color used for hightlighting selected text and lists
-@property NSInteger recentApplicationsLimit;  // the number of recent applications to track
-@property NSInteger recentDocumentsLimit;  // the number of recent documents to track
-@property NSInteger recentServersLimit;  // the number of recent servers to track
-@property SystemEventsSclp scrollArrowPlacement;  // the placement of the scroll arrows
-@property SystemEventsSclb scrollBarAction;  // the action performed by clicking the scroll bar
-@property BOOL smoothScrolling;  // Is smooth scrolling used?
-
-
-@end
-
-
-
-/*
- * Security Suite
- */
-
-// a collection of security preferences
-@interface SystemEventsSecurityPreferencesObject : SystemEventsItem
-
-@property BOOL automaticLogin;  // Is automatic login allowed?
-@property BOOL logOutWhenInactive;  // Will the computer log out when inactive?
-@property NSInteger logOutWhenInactiveInterval;  // The interval of inactivity after which the computer will log out
-@property BOOL requirePasswordToUnlock;  // Is a password required to unlock secure preferences?
-@property BOOL requirePasswordToWake;  // Is a password required to wake the computer from sleep or screen saver?
-@property BOOL secureVirtualMemory;  // Is secure virtual memory being used?
-
-
-@end
-
-
-
-/*
- * Dock Preferences Suite
- */
-
-// user's dock preferences
-@interface SystemEventsDockPreferencesObject : SystemEventsItem
-
-@property BOOL animate;  // is the animation of opening applications on or off?
-@property BOOL autohide;  // is autohiding the dock on or off?
-@property double dockSize;  // size/height of the items (between 0.0 (minimum) and 1.0 (maximum))
-@property SystemEventsDpls location;  // location on screen
-@property BOOL magnification;  // is magnification on or off?
-@property double magnificationSize;  // maximum magnification size when magnification is on (between 0.0 (minimum) and 1.0 (maximum))
-@property SystemEventsDpef minimizeEffect;  // minimization effect
 
 
 @end
@@ -1616,6 +1499,123 @@ typedef enum {
 @interface SystemEventsXMLFile : SystemEventsFile
 
 @property (copy) SystemEventsXMLData *contents;  // the contents of the XML file; elements and properties of the XML data may be accessed as if they were elements and properties of the XML file
+
+
+@end
+
+
+
+/*
+ * Expose Preferences Suite
+ */
+
+// user's expose and dashboard mouse and key preferences
+@interface SystemEventsExposePreferencesObject : SystemEventsItem
+
+@property (copy, readonly) SystemEventsShortcut *allWindowsShortcut;  // the key and mouse binding shortcuts for showing the all application windows
+@property (copy, readonly) SystemEventsShortcut *applicationWindowsShortcut;  // the key and mouse binding shortcuts for showing the current application windows
+@property (copy, readonly) SystemEventsScreenCorner *bottomLeftScreenCorner;  // the bottom left screen corner
+@property (copy, readonly) SystemEventsScreenCorner *bottomRightScreenCorner;  // the bottom right screen corner
+@property (copy, readonly) SystemEventsShortcut *dashboardShortcut;  // the key and mouse binding shortcuts for showing the dashboard
+@property (copy, readonly) SystemEventsShortcut *showDesktopShortcut;  // the key and mouse binding shortcuts for showing the desktop
+@property (copy, readonly) SystemEventsShortcut *showSpacesShortcut;  // the key and mouse binding shortcuts for showing spaces
+@property (copy, readonly) SystemEventsSpacesPreferencesObject *spacesPreferences;  // the spaces preferences
+@property (copy, readonly) SystemEventsScreenCorner *topLeftScreenCorner;  // the top left screen corner
+@property (copy, readonly) SystemEventsScreenCorner *topRightScreenCorner;  // the top right screen corner
+
+
+@end
+
+// a screen corner location for a specific expose or dashboard feature
+@interface SystemEventsScreenCorner : SystemEventsItem
+
+@property SystemEventsEpac activity;  // activity for a specific screen corner
+@property SystemEventsEpmd modifiers;  // keyboard modifiers used for a specific screen corner, passed as string or list
+
+
+@end
+
+// a keyboard or mouse shortcut for a specific expose or dashboard feature
+@interface SystemEventsShortcut : SystemEventsItem
+
+@property SystemEventsEpfk functionKey;  // keyboard key for a specific shortcut, not all keyboards support all possible function keys
+@property SystemEventsEpmd functionKeyModifiers;  // keyboard modifiers used for a specific function key, passed as string or list
+@property NSInteger mouseButton;  // mouse button for a specific shortcut (between 2 and the users number of buttons, 0 or none to remove the property)
+@property SystemEventsEpmd mouseButtonModifiers;  // keyboard modifiers used for a specific mouse button, passed as string or list
+
+
+@end
+
+// user's spaces application bindings and navigation preferences
+@interface SystemEventsSpacesPreferencesObject : SystemEventsItem
+
+@property (copy) NSDictionary *applicationBindings;  // binding of applications to specific spaces
+@property (copy, readonly) SystemEventsSpacesShortcut *arrowKeyModifiers;  // keyboard modifiers used controlling the arrow key navigation through spaces
+@property (copy, readonly) SystemEventsSpacesShortcut *numbersKeyModifiers;  // keyboard modifiers used controlling the number key navigation through spaces
+@property NSInteger spacesColumns;  // number of columns of spaces
+@property BOOL spacesEnabled;  // is spaces enabled?
+@property NSInteger spacesRows;  // number of rows of spaces
+
+
+@end
+
+// The keyboard modifiers for a specific spaces navigation shortcut
+@interface SystemEventsSpacesShortcut : SystemEventsItem
+
+@property SystemEventsEpmd keyModifiers;  // modifiers used for a specific function key, passed as string or list
+
+
+@end
+
+
+
+/*
+ * Accounts Suite
+ */
+
+// user account
+@interface SystemEventsUser : SystemEventsItem
+
+@property (copy, readonly) NSString *fullName;  // user's full name
+@property (copy, readonly) SystemEventsAlias *homeDirectory;  // path to user's home directory
+@property (copy, readonly) NSString *name;  // user's short name
+@property (copy) SystemEventsAlias *picturePath;  // path to user's picture. Can be set for current user only!
+
+
+@end
+
+
+
+/*
+ * Login Items Suite
+ */
+
+// an item to be launched or opened at login
+@interface SystemEventsLoginItem : SystemEventsItem
+
+@property BOOL hidden;  // Is the Login Item hidden when launched?
+@property (copy, readonly) NSString *kind;  // the file type of the Login Item
+@property (copy, readonly) NSString *name;  // the name of the Login Item
+@property (copy, readonly) NSString *path;  // the file system path to the Login Item
+
+
+@end
+
+
+
+/*
+ * Security Suite
+ */
+
+// a collection of security preferences
+@interface SystemEventsSecurityPreferencesObject : SystemEventsItem
+
+@property BOOL automaticLogin;  // Is automatic login allowed?
+@property BOOL logOutWhenInactive;  // Will the computer log out when inactive?
+@property NSInteger logOutWhenInactiveInterval;  // The interval of inactivity after which the computer will log out
+@property BOOL requirePasswordToUnlock;  // Is a password required to unlock secure preferences?
+@property BOOL requirePasswordToWake;  // Is a password required to wake the computer from sleep or screen saver?
+@property BOOL secureVirtualMemory;  // Is secure virtual memory being used?
 
 
 @end
