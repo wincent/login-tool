@@ -99,7 +99,6 @@ int main (int argc, const char * argv[])
     int                 status      = EXIT_SUCCESS;
     int                 ret         = getopt(argc, (char * const *)argv, "hvlr:a:H");
 
-    // TODO: accept multiple args eg. multiple -r multiple -a etc
     while (ret != -1)
     {
         WO_FREE(arg);
