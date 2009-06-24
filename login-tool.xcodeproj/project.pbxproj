@@ -18,6 +18,19 @@
 			name = "Update build numbers";
 			productName = "Update build numbers";
 		};
+		BC5869220FF292FE00F7BD9E /* Distribution */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = BC5869250FF2933900F7BD9E /* Build configuration list for PBXAggregateTarget "Distribution" */;
+			buildPhases = (
+				BC5869210FF292FE00F7BD9E /* ShellScript */,
+			);
+			dependencies = (
+				BC58695C0FF2960200F7BD9E /* PBXTargetDependency */,
+				BC58695E0FF2960500F7BD9E /* PBXTargetDependency */,
+			);
+			name = Distribution;
+			productName = Distribution;
+		};
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
@@ -32,6 +45,23 @@
 		BC5868790FF28B2800F7BD9E /* WOLogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC58672B0FF28A5900F7BD9E /* WOLogManager.m */; };
 		BC58687A0FF28B2800F7BD9E /* WOObject.m in Sources */ = {isa = PBXBuildFile; fileRef = BC58672E0FF28A5900F7BD9E /* WOObject.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		BC58695B0FF2960200F7BD9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = BC5866EE0FF27CE200F7BD9E /* Update build numbers */;
+			remoteInfo = "Update build numbers";
+		};
+		BC58695D0FF2960500F7BD9E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 08FB7793FE84155DC02AAC07 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8DD76F960486AA7600D96B5E /* login-tool */;
+			remoteInfo = "login-tool";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		08FB7796FE84155DC02AAC07 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -238,6 +268,7 @@
 			targets = (
 				8DD76F960486AA7600D96B5E /* login-tool */,
 				BC5866EE0FF27CE200F7BD9E /* Update build numbers */,
+				BC5869220FF292FE00F7BD9E /* Distribution */,
 			);
 		};
 /* End PBXProject section */
@@ -255,6 +286,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "set -e\ncd \"${SOURCE_ROOT}\"\n\"${BUILDTOOLS_DIR}/UpdateGitRevisionNumbers.rb\"\n. \"${BUILDTOOLS_DIR}/UpdateBuildVersionNumbers.sh\" login-tool_Version.h";
+		};
+		BC5869210FF292FE00F7BD9E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ". \"$BUILDTOOLS_DIR/Common.sh\" &&\ncd \"$CONFIGURATION_BUILD_DIR\" &&\ntest -f \"$PROJECT\" || die \" must exist\"\nVERSION=$(grep -E \"#define +WO_INFO_PLIST_VERSION\" \"$SOURCE_ROOT/login-tool_Version.h\" | awk '{print $3}')\ntest ! -z \"$VERSION\" || die \"couldn't extract version number\"\nzip \"$PROJECT-$VERSION.zip\" \"$PROJECT\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -276,6 +320,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		BC58695C0FF2960200F7BD9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = BC5866EE0FF27CE200F7BD9E /* Update build numbers */;
+			targetProxy = BC58695B0FF2960200F7BD9E /* PBXContainerItemProxy */;
+		};
+		BC58695E0FF2960500F7BD9E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8DD76F960486AA7600D96B5E /* login-tool */;
+			targetProxy = BC58695D0FF2960500F7BD9E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		BC5866EF0FF27CE400F7BD9E /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -288,6 +345,20 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				PRODUCT_NAME = "Update build numbers";
+			};
+			name = Release;
+		};
+		BC5869230FF292FE00F7BD9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Distribution;
+			};
+			name = Debug;
+		};
+		BC5869240FF292FE00F7BD9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = Distribution;
 			};
 			name = Release;
 		};
@@ -329,6 +400,15 @@
 			buildConfigurations = (
 				BC5866EF0FF27CE400F7BD9E /* Debug */,
 				BC5866F00FF27CE400F7BD9E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BC5869250FF2933900F7BD9E /* Build configuration list for PBXAggregateTarget "Distribution" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC5869230FF292FE00F7BD9E /* Debug */,
+				BC5869240FF292FE00F7BD9E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
