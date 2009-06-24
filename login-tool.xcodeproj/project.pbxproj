@@ -59,10 +59,11 @@
 		BC5868580FF28ABB00F7BD9E /* WODebugMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WODebugMacros.h; path = WOPublic/WODebugMacros.h; sourceTree = "<group>"; };
 		BC5868590FF28ABB00F7BD9E /* WOMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WOMemory.h; path = WOPublic/WOMemory.h; sourceTree = "<group>"; };
 		BC58685A0FF28ABB00F7BD9E /* WOMemoryBarrier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WOMemoryBarrier.h; path = WOPublic/WOMemoryBarrier.h; sourceTree = "<group>"; };
-		BC5FA4BA0D06B68200A5957F /* base-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "base-style.xcconfig"; path = "../../buildtools/base-style.xcconfig"; sourceTree = SOURCE_ROOT; };
-		BC5FA4BB0D06B68200A5957F /* debug-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "debug-style.xcconfig"; path = "../../buildtools/debug-style.xcconfig"; sourceTree = SOURCE_ROOT; };
-		BC5FA4BC0D06B68200A5957F /* foundation-tool-target.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "foundation-tool-target.xcconfig"; path = "../../buildtools/foundation-tool-target.xcconfig"; sourceTree = SOURCE_ROOT; };
-		BC5FA4BD0D06B68200A5957F /* release-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "release-style.xcconfig"; path = "../../buildtools/release-style.xcconfig"; sourceTree = SOURCE_ROOT; };
+		BC5868A70FF291BC00F7BD9E /* buildtools */ = {isa = PBXFileReference; lastKnownFileType = folder; path = buildtools; sourceTree = "<group>"; };
+		BC58690C0FF291D900F7BD9E /* base-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "base-style.xcconfig"; path = "buildtools/base-style.xcconfig"; sourceTree = "<group>"; };
+		BC58690D0FF291D900F7BD9E /* debug-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "debug-style.xcconfig"; path = "buildtools/debug-style.xcconfig"; sourceTree = "<group>"; };
+		BC58690E0FF291D900F7BD9E /* foundation-tool-target.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "foundation-tool-target.xcconfig"; path = "buildtools/foundation-tool-target.xcconfig"; sourceTree = "<group>"; };
+		BC58690F0FF291D900F7BD9E /* release-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "release-style.xcconfig"; path = "buildtools/release-style.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +82,7 @@
 		08FB7794FE84155DC02AAC07 /* login-tool */ = {
 			isa = PBXGroup;
 			children = (
-				BC5867200FF28A1100F7BD9E /* WOPublic */,
+				BC5868A60FF2919500F7BD9E /* Submodules */,
 				BC5859FA0FEFF47300F7BD9E /* WOPublic */,
 				BC5FA4B40D06B65600A5957F /* Configuration */,
 				BC5866F70FF27DE200F7BD9E /* Headers */,
@@ -175,13 +176,22 @@
 			name = Headers;
 			sourceTree = "<group>";
 		};
+		BC5868A60FF2919500F7BD9E /* Submodules */ = {
+			isa = PBXGroup;
+			children = (
+				BC5868A70FF291BC00F7BD9E /* buildtools */,
+				BC5867200FF28A1100F7BD9E /* WOPublic */,
+			);
+			name = Submodules;
+			sourceTree = "<group>";
+		};
 		BC5FA4B40D06B65600A5957F /* Configuration */ = {
 			isa = PBXGroup;
 			children = (
-				BC5FA4BA0D06B68200A5957F /* base-style.xcconfig */,
-				BC5FA4BB0D06B68200A5957F /* debug-style.xcconfig */,
-				BC5FA4BC0D06B68200A5957F /* foundation-tool-target.xcconfig */,
-				BC5FA4BD0D06B68200A5957F /* release-style.xcconfig */,
+				BC58690C0FF291D900F7BD9E /* base-style.xcconfig */,
+				BC58690D0FF291D900F7BD9E /* debug-style.xcconfig */,
+				BC58690E0FF291D900F7BD9E /* foundation-tool-target.xcconfig */,
+				BC58690F0FF291D900F7BD9E /* release-style.xcconfig */,
 			);
 			name = Configuration;
 			sourceTree = "<group>";
@@ -283,21 +293,21 @@
 		};
 		BC5FA4A20D06AF4F00A5957F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC5FA4BB0D06B68200A5957F /* debug-style.xcconfig */;
+			baseConfigurationReference = BC58690D0FF291D900F7BD9E /* debug-style.xcconfig */;
 			buildSettings = {
 			};
 			name = Debug;
 		};
 		BC5FA4A30D06AF4F00A5957F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC5FA4BD0D06B68200A5957F /* release-style.xcconfig */;
+			baseConfigurationReference = BC58690F0FF291D900F7BD9E /* release-style.xcconfig */;
 			buildSettings = {
 			};
 			name = Release;
 		};
 		BC5FA4A50D06AF4F00A5957F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC5FA4BC0D06B68200A5957F /* foundation-tool-target.xcconfig */;
+			baseConfigurationReference = BC58690E0FF291D900F7BD9E /* foundation-tool-target.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "login-tool";
 			};
@@ -305,7 +315,7 @@
 		};
 		BC5FA4A60D06AF4F00A5957F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC5FA4BC0D06B68200A5957F /* foundation-tool-target.xcconfig */;
+			baseConfigurationReference = BC58690E0FF291D900F7BD9E /* foundation-tool-target.xcconfig */;
 			buildSettings = {
 				PRODUCT_NAME = "login-tool";
 			};
