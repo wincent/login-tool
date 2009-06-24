@@ -45,7 +45,22 @@ void usage(void)
            " -r         : remove item(s)\n"
            " -a         : add item(s)\n"
            " -H         : set 'hide' attribute on added item(s)\n"
-           " -l         : list items\n");
+           " -l         : list items\n"
+           " -v         : show version information\n");
+}
+
+void version(void)
+{
+    printf("%s\n"
+           "%s\n"
+           "%s\n"
+           "%s\n"
+           "%s\n",
+           WO_RCSID_STRING(productname),
+           WO_RCSID_STRING(version),
+           WO_RCSID_STRING(copyright),
+           WO_RCSID_STRING(build),
+           WO_RCSID_STRING(builddate));
 }
 
 void printLoginItem(WOLoginItem *item)
@@ -82,7 +97,7 @@ int main (int argc, const char * argv[])
     char                *arg        = NULL;
     BOOL                hide        = NO;
     int                 status      = EXIT_SUCCESS;
-    int                 ret         = getopt(argc, (char * const *)argv, "hlr:a:H");
+    int                 ret         = getopt(argc, (char * const *)argv, "hvlr:a:H");
 
     // TODO: accept multiple args eg. multiple -r multiple -a etc
     while (ret != -1)
@@ -92,6 +107,10 @@ int main (int argc, const char * argv[])
         {
             case 'h':       // show help
                 usage();
+                goto cleanup;
+
+            case 'v':       // show version
+                version();
                 goto cleanup;
 
             case 'l':       // list items
