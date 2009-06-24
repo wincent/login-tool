@@ -1,3 +1,6 @@
 [submodule "WOPublic"]
 	path = WOPublic
 	url = git://git.wincent.com/WOPublic.git
+[submodule "buildtools"]
+	path = buildtools
+	url = git://git.wincent.com/buildtools.git
