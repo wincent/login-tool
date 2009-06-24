@@ -6,6 +6,20 @@
 	objectVersion = 44;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		BC5866EE0FF27CE200F7BD9E /* Update build numbers */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = BC5866F10FF27D1D00F7BD9E /* Build configuration list for PBXAggregateTarget "Update build numbers" */;
+			buildPhases = (
+				BC5866ED0FF27CE200F7BD9E /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Update build numbers";
+			productName = "Update build numbers";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		8DD76F9A0486AA7600D96B5E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.m */; settings = {ATTRIBUTES = (); }; };
 		8DD76F9C0486AA7600D96B5E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08FB779EFE84155DC02AAC07 /* Foundation.framework */; };
@@ -171,9 +185,26 @@
 			projectRoot = "";
 			targets = (
 				8DD76F960486AA7600D96B5E /* login-tool */,
+				BC5866EE0FF27CE200F7BD9E /* Update build numbers */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BC5866ED0FF27CE200F7BD9E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -e\ncd \"${SOURCE_ROOT}\"\n\"${BUILDTOOLS_DIR}/UpdateGitRevisionNumbers.rb\"\n. \"${BUILDTOOLS_DIR}/UpdateBuildVersionNumbers.sh\" login-tool_Version.h";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8DD76F990486AA7600D96B5E /* Sources */ = {
@@ -194,6 +225,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		BC5866EF0FF27CE400F7BD9E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "Update build numbers";
+			};
+			name = Debug;
+		};
+		BC5866F00FF27CE400F7BD9E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "Update build numbers";
+			};
+			name = Release;
+		};
 		BC5FA4A20D06AF4F00A5957F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = BC5FA4BB0D06B68200A5957F /* debug-style.xcconfig */;
@@ -227,6 +272,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BC5866F10FF27D1D00F7BD9E /* Build configuration list for PBXAggregateTarget "Update build numbers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC5866EF0FF27CE400F7BD9E /* Debug */,
+				BC5866F00FF27CE400F7BD9E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		BC5FA4A80D06AF5000A5957F /* Build configuration list for PBXProject "login-tool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
