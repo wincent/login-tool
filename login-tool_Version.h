@@ -52,7 +52,7 @@
  *! so as to avoid clashing with the WO_STRINGIFY macro in WOPublic.
  */
 #ifndef WO_STRINGIFY
-#define WO_STRINGIFY(var)   #var
+#define WO_STRINGIFY(entity)  #entity
 #endif
 
 /*!
@@ -61,7 +61,7 @@
  *! clashes.
  */
 #ifndef WO_STRINGIFY_CONTENTS
-#define WO_STRINGIFY_CONTENTS(var)  WO_STRINGIFY(var)
+#define WO_STRINGIFY_CONTENTS(entity)  WO_STRINGIFY(entity)
 #endif
 
 #define WO_BUILDNUMBER_STRING       WO_STRINGIFY_CONTENTS(WO_BUILDNUMBER)
