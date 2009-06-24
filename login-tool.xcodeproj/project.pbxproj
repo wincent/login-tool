@@ -53,6 +53,7 @@
 		BC585A0B0FEFF4B000F7BD9E /* WOLoginItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WOLoginItem.m; path = ../../WOPublic/src/WOLoginItem.m; sourceTree = SOURCE_ROOT; };
 		BC585A0C0FEFF4B000F7BD9E /* WOObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WOObject.h; path = ../../WOPublic/src/WOObject.h; sourceTree = SOURCE_ROOT; };
 		BC585A0D0FEFF4B000F7BD9E /* NSString+WOFileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+WOFileUtilities.h"; path = "../../WOPublic/src/NSString+WOFileUtilities.h"; sourceTree = SOURCE_ROOT; };
+		BC5866F80FF27E1F00F7BD9E /* login-tool_Version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "login-tool_Version.h"; sourceTree = "<group>"; };
 		BC5FA4BA0D06B68200A5957F /* base-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "base-style.xcconfig"; path = "../../buildtools/base-style.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BC5FA4BB0D06B68200A5957F /* debug-style.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "debug-style.xcconfig"; path = "../../buildtools/debug-style.xcconfig"; sourceTree = SOURCE_ROOT; };
 		BC5FA4BC0D06B68200A5957F /* foundation-tool-target.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = "foundation-tool-target.xcconfig"; path = "../../buildtools/foundation-tool-target.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -79,6 +80,7 @@
 				BC5859F90FEFF47000F7BD9E /* WOPublic */,
 				BC5859FA0FEFF47300F7BD9E /* WOPublic */,
 				BC5FA4B40D06B65600A5957F /* Configuration */,
+				BC5866F70FF27DE200F7BD9E /* Headers */,
 				08FB7795FE84155DC02AAC07 /* Source */,
 				C6859EA2029092E104C91782 /* Documentation */,
 				08FB779DFE84155DC02AAC07 /* External Frameworks and Libraries */,
@@ -131,6 +133,14 @@
 				BC585A020FEFF4B000F7BD9E /* WOObject.m */,
 			);
 			name = WOPublic;
+			sourceTree = "<group>";
+		};
+		BC5866F70FF27DE200F7BD9E /* Headers */ = {
+			isa = PBXGroup;
+			children = (
+				BC5866F80FF27E1F00F7BD9E /* login-tool_Version.h */,
+			);
+			name = Headers;
 			sourceTree = "<group>";
 		};
 		BC5FA4B40D06B65600A5957F /* Configuration */ = {

@@ -24,6 +24,7 @@
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
+// system headers
 #import <Foundation/Foundation.h>
 #import <unistd.h>                  /* for getopt() */
 
@@ -31,6 +32,9 @@
 #import "WOPublic/WOConvenienceMacros.h"
 #import "WOPublic/WOLoginItem.h"
 #import "WOPublic/WOLoginItemList.h"
+
+// other headers
+#import "login-tool_Version.h"      /* make what(1) produce meaningful output */
 
 void usage(void)
 {
